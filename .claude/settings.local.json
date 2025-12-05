@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(copy \"c:\\Users\\ejroc\\Documents\\projects\\esc\\img\\esc_logowithoutbg_background.png\" \"c:\\Users\\ejroc\\Documents\\projects\\esc\\landing-page\\img\"\" && copy \"c:UsersejrocDocumentsprojectsescimgbackground_esc.png\" \"c:UsersejrocDocumentsprojectsesclanding-pageimg\"\")",
+      "Bash(cp:*)",
+      "Bash(cmd.exe /c \"copy \"\"c:\\Users\\ejroc\\Documents\\projects\\esc\\img\\esc_logowithoutbg_background.png\"\" \"\"c:\\Users\\ejroc\\Documents\\projects\\esc\\landing-page\\img\\\"\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

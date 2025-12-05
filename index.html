@@ -192,32 +192,19 @@
                 <div class="bg-gradient"></div>
                 <div class="bg-glow bg-glow-1"></div>
                 <div class="bg-glow bg-glow-2"></div>
-                <div class="bg-pattern"></div>
-                <div class="bg-image bg-image-business"></div>
+                <div class="bg-image bg-image-main"></div>
             </div>
 
             <div class="page-content">
 
-                <!-- ==========================================
-                     LOGO COMPONENT - Glassmorphism + Halo Effect
-                     ========================================== -->
-                <div class="logo-section">
-                    <!-- Halo de luz ambiente (camada de fundo) -->
-                    <div class="logo-ambient-glow"></div>
-
-                    <!-- Card principal com glassmorphism -->
-                    <div class="logo-glass-card">
-                        <!-- Borda luminosa interna -->
-                        <div class="logo-inner-glow"></div>
-
-                        <!-- Imagem da logo -->
-                        <img
-                            src="img/esc_white_background.jpg"
-                            alt="ESC - Empresa Simples de Crédito"
-                            class="logo-image"
-                            loading="eager"
-                        >
-                    </div>
+                <!-- Logo sem fundo -->
+                <div class="logo-section logo-simple">
+                    <img
+                        src="img/esc_logowithoutbg_background.png"
+                        alt="ESC - Empresa Simples de Crédito"
+                        class="logo-image-transparent"
+                        loading="eager"
+                    >
                 </div>
 
                 <!-- Conteúdo Principal -->
@@ -225,33 +212,25 @@
 
                     <!-- Headline com hierarquia clara -->
                     <div class="headline-group">
-                        <h1 class="headline-primary">
-                            Crédito para sua empresa
+                        <h1 class="headline-primary headline-uppercase">
+                            CRÉDITO PARA SUA EMPRESA
                         </h1>
                         <p class="headline-secondary">
-                            Rápido, simples e sem burocracia
+                            Ideal para micro e pequenos negócios
                         </p>
                     </div>
 
-                    <!-- Trust Badges - Indicadores de simplicidade -->
+                    <!-- Tag única -->
                     <div class="trust-indicators">
-                        <div class="trust-badge">
-                            <svg class="trust-icon"><use href="#icon-zap"/></svg>
-                            <span>Aprovação em 24h</span>
-                        </div>
-                        <div class="trust-badge">
-                            <svg class="trust-icon"><use href="#icon-shield-check"/></svg>
-                            <span>Sem consulta SPC/Serasa</span>
-                        </div>
-                        <div class="trust-badge">
+                        <div class="trust-badge trust-badge-highlight">
                             <svg class="trust-icon"><use href="#icon-building"/></svg>
-                            <span>MEI, ME e EPP</span>
+                            <span>Exclusivo para MEI, ME e EPP</span>
                         </div>
                     </div>
 
                     <!-- Pergunta Principal -->
                     <div class="question-section">
-                        <p class="question-text">
+                        <p class="question-text question-highlight">
                             Seu negócio já possui <strong>CNPJ ativo</strong>?
                         </p>
 
@@ -259,12 +238,11 @@
                         <div class="cta-group">
                             <!-- CTA Principal - SIM -->
                             <div class="cta-wrapper">
-                                <button class="cta-primary" data-value="sim" data-next="2">
+                                <button class="cta-primary cta-centered" data-value="sim" data-next="2">
                                     <span class="cta-content">
                                         <svg class="cta-icon"><use href="#icon-check"/></svg>
                                         <span class="cta-label">Sim, tenho CNPJ</span>
                                     </span>
-                                    <svg class="cta-arrow"><use href="#icon-arrow-right"/></svg>
                                 </button>
                             </div>
 
@@ -281,12 +259,6 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Elegibilidade -->
-                    <div class="eligibility-note">
-                        <svg class="eligibility-icon"><use href="#icon-info"/></svg>
-                        <p>Exclusivo para <strong>MEI, ME e EPP</strong> com CNPJ ativo há mais de 6 meses</p>
                     </div>
 
                 </div>
@@ -331,29 +303,29 @@
                 <div class="hero-content">
 
                     <div class="badge-highlight">
-                        <svg class="badge-icon"><use href="#icon-lock"/></svg>
-                        <span>Sem consulta aos órgãos de proteção</span>
+                        <svg class="badge-icon"><use href="#icon-shield-check"/></svg>
+                        <span>Sem consulta SPC/SERASA</span>
                     </div>
 
                     <div class="headline-group">
-                        <h1 class="headline-primary">
-                            Sem consulta ao <span class="text-gradient">SPC/Serasa</span>
+                        <h1 class="headline-primary headline-uppercase">
+                            NÃO IMPORTA O TAMANHO DA SUA EMPRESA
                         </h1>
                         <p class="headline-secondary">
-                            E sem comprovação de renda! Parcelas diárias em até 40x
+                            Se você tem um negócio, a gente tem uma solução.
                         </p>
                     </div>
 
                     <div class="question-section">
-                        <p class="question-text">
-                            Você possui um <strong>comércio físico</strong> com fachada?
+                        <p class="question-text question-highlight">
+                            Seu negócio tem <strong>fachada</strong>?
                         </p>
 
                         <div class="cta-group cta-group-horizontal">
                             <button class="cta-primary" data-value="sim" data-next="3">
                                 <span class="cta-content">
                                     <svg class="cta-icon"><use href="#icon-store"/></svg>
-                                    <span class="cta-label">Sim, tenho loja física</span>
+                                    <span class="cta-label">Tenho loja física</span>
                                 </span>
                             </button>
                             <button class="cta-secondary cta-secondary-alt" data-value="nao" data-next="3">
@@ -380,54 +352,54 @@
             <div class="page-content">
                 <div class="hero-content">
 
-                    <div class="badge-highlight badge-success">
-                        <svg class="badge-icon"><use href="#icon-shield-check"/></svg>
-                        <span>100% Regularizado</span>
+                    <div class="badge-highlight">
+                        <svg class="badge-icon"><use href="#icon-clock"/></svg>
+                        <span>Planos com Pagamentos Diários</span>
                     </div>
 
                     <div class="headline-group">
-                        <h1 class="headline-primary">
-                            Crédito na conta em <span class="text-gradient">até 24h</span>
+                        <h1 class="headline-primary headline-uppercase">
+                            CRÉDITO NA CONTA EM <span class="text-gradient">ATÉ 24H</span>
                         </h1>
                         <p class="headline-secondary">
-                            Escolha o valor que melhor atende sua necessidade
+                            Rápido, Simples e sem Burocracia
                         </p>
                     </div>
 
                     <div class="question-section">
-                        <p class="question-text">
-                            De quanto você precisa?
+                        <p class="question-text question-highlight">
+                            Seu negócio precisa de <strong>quanto</strong>?
                         </p>
 
                         <div class="value-grid">
                             <button class="value-card" data-value="500" data-next="4">
                                 <span class="value-amount">R$ 500</span>
-                                <span class="value-installment">10x de R$ 60</span>
+                                <span class="value-installment">10x de R$ 65</span>
                             </button>
                             <button class="value-card" data-value="1000" data-next="4">
                                 <span class="value-amount">R$ 1.000</span>
-                                <span class="value-installment">20x de R$ 60</span>
+                                <span class="value-installment">20x de R$ 65</span>
                             </button>
                             <button class="value-card" data-value="1500" data-next="4">
                                 <span class="value-amount">R$ 1.500</span>
-                                <span class="value-installment">30x de R$ 60</span>
+                                <span class="value-installment">30x de R$ 65</span>
                             </button>
-                            <button class="value-card" data-value="2000" data-next="4">
+                            <button class="value-card value-card-featured" data-value="2000" data-next="4">
+                                <span class="value-badge">Mais pedido</span>
                                 <span class="value-amount">R$ 2.000</span>
-                                <span class="value-installment">40x de R$ 60</span>
+                                <span class="value-installment">40x de R$ 65</span>
                             </button>
                             <button class="value-card" data-value="2500" data-next="4">
                                 <span class="value-amount">R$ 2.500</span>
-                                <span class="value-installment">40x de R$ 75</span>
+                                <span class="value-installment">40x de R$ 81</span>
                             </button>
-                            <button class="value-card value-card-featured" data-value="3000" data-next="4">
-                                <span class="value-badge">Mais pedido</span>
+                            <button class="value-card" data-value="3000" data-next="4">
                                 <span class="value-amount">R$ 3.000</span>
-                                <span class="value-installment">40x de R$ 90</span>
+                                <span class="value-installment">40x de R$ 97</span>
                             </button>
                         </div>
 
-                        <p class="question-note">Valores aproximados. Simulação detalhada na próxima etapa.</p>
+                        <p class="question-note">Temos mais opções de parcelamento. Verificar na simulação.</p>
                     </div>
 
                 </div>
@@ -453,8 +425,8 @@
                     </div>
 
                     <div class="headline-group">
-                        <h1 class="headline-primary">
-                            Receba sua <span class="text-gradient">simulação</span>
+                        <h1 class="headline-primary headline-uppercase">
+                            RECEBA SUA <span class="text-gradient">SIMULAÇÃO</span>
                         </h1>
                         <p class="headline-secondary">
                             Preencha seus dados para finalizar
@@ -488,19 +460,31 @@
                             <span class="error-message" id="whatsappError"></span>
                         </div>
 
-                        <div class="form-group">
-                            <label for="cidade_estado">Cidade / Estado</label>
-                            <input
-                                type="text"
-                                id="cidade_estado"
-                                name="cidade_estado"
-                                placeholder="Ex: São Paulo - SP"
-                                required
-                                autocomplete="address-level2"
-                                list="cidades"
-                            >
-                            <datalist id="cidades"></datalist>
-                            <span class="error-message" id="cidade_estadoError"></span>
+                        <div class="form-row">
+                            <div class="form-group form-group-half">
+                                <label for="estado">Estado</label>
+                                <select
+                                    id="estado"
+                                    name="estado"
+                                    required
+                                >
+                                    <option value="">Selecione...</option>
+                                </select>
+                                <span class="error-message" id="estadoError"></span>
+                            </div>
+
+                            <div class="form-group form-group-half">
+                                <label for="cidade">Cidade</label>
+                                <select
+                                    id="cidade"
+                                    name="cidade"
+                                    required
+                                    disabled
+                                >
+                                    <option value="">Selecione...</option>
+                                </select>
+                                <span class="error-message" id="cidadeError"></span>
+                            </div>
                         </div>
 
                         <button type="submit" class="submit-btn" id="submitBtn">
@@ -527,7 +511,7 @@
                 <div class="bg-gradient"></div>
                 <div class="bg-glow bg-glow-1"></div>
                 <div class="bg-glow bg-glow-2"></div>
-                <div class="bg-image bg-image-business"></div>
+                <div class="bg-image bg-image-main"></div>
             </div>
 
             <div class="page-content">
@@ -544,28 +528,32 @@
                     </div>
 
                     <div class="headline-group">
-                        <h1 class="headline-primary">
-                            Estamos <span class="text-gradient">quase lá!</span>
+                        <h1 class="headline-primary headline-uppercase">
+                            ESTAMOS <span class="text-gradient">QUASE LÁ!</span>
                         </h1>
                     </div>
 
                     <div class="confirmation-card">
                         <p class="confirmation-label">Solicitação de crédito no valor de</p>
                         <p class="confirmation-value" id="valorConfirmacao">R$ 3.000</p>
-                        <p class="confirmation-text">Nosso operador vai entrar em contato pelo WhatsApp para finalizar sua simulação personalizada.</p>
+                        <p class="confirmation-text">Nosso operador vai personalizar a sua proposta e enviar no seu WhatsApp.</p>
                     </div>
 
-                    <div class="whatsapp-section">
-                        <p class="whatsapp-label">Quer agilizar? Fale direto conosco:</p>
-                        <a href="#" id="whatsappLink" class="whatsapp-btn" target="_blank">
-                            <svg class="whatsapp-icon"><use href="#icon-whatsapp"/></svg>
-                            <span>Chamar no WhatsApp</span>
-                        </a>
+                    <!-- Tags de benefícios -->
+                    <div class="confirmation-tags">
+                        <div class="trust-badge">
+                            <svg class="trust-icon"><use href="#icon-zap"/></svg>
+                            <span>Crédito em conta em até 24h</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg class="trust-icon"><use href="#icon-shield-check"/></svg>
+                            <span>Sem comprovação de renda</span>
+                        </div>
                     </div>
 
                     <div class="social-proof">
                         <svg class="social-proof-icon"><use href="#icon-users"/></svg>
-                        <p>Mais de <strong>1.000 empresas</strong> já atendidas</p>
+                        <p>Mais de <strong>10.000 empresas</strong> já atendidas</p>
                     </div>
 
                 </div>

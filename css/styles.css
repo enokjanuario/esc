@@ -353,6 +353,13 @@ body {
     background-size: 80%;
 }
 
+.bg-image-main {
+    background-image: url('../img/background_esc.png');
+    opacity: 0.12;
+    background-position: center;
+    background-size: cover;
+}
+
 /* ============================================
    PAGE CONTENT
    ============================================ */
@@ -569,6 +576,29 @@ body {
     filter: brightness(1.07) contrast(1.02);
 }
 
+/* -- Logo Simples (sem card/quadrado) -- */
+.logo-simple {
+    margin-bottom: var(--space-4);
+}
+
+.logo-image-transparent {
+    max-width: 160px;
+    height: auto;
+    display: block;
+    filter: brightness(1.1);
+    transition: transform var(--transition-base);
+}
+
+.logo-image-transparent:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 480px) {
+    .logo-image-transparent {
+        max-width: 130px;
+    }
+}
+
 /* ============================================
    RESPONSIVIDADE - Logo Section
    ============================================ */
@@ -647,6 +677,11 @@ body {
     background-clip: text;
 }
 
+.headline-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
 /* ============================================
    TRUST INDICATORS - Badges de Confiança
    ============================================ */
@@ -682,6 +717,14 @@ body {
     color: var(--color-gold-500);
 }
 
+.trust-badge-highlight {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.3);
+    color: var(--color-gold-400);
+    font-size: var(--font-size-sm);
+    padding: var(--space-3) var(--space-5);
+}
+
 /* ============================================
    QUESTION SECTION
    ============================================ */
@@ -699,6 +742,16 @@ body {
 .question-text strong {
     color: var(--color-white);
     font-weight: 700;
+}
+
+.question-highlight {
+    color: var(--color-gold-400);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.question-highlight strong {
+    color: var(--color-gold-500);
 }
 
 .question-note {
@@ -802,6 +855,10 @@ body {
 
 .cta-primary:active {
     transform: translateY(-1px);
+}
+
+.cta-primary.cta-centered {
+    justify-content: center;
 }
 
 .cta-content {
@@ -1059,6 +1116,66 @@ body {
     color: var(--color-error-500);
     margin-top: var(--space-2);
     min-height: 18px;
+}
+
+/* Form Row - Campos lado a lado */
+.form-row {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+.form-group-half {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Select Styles */
+.form-group select {
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    background: var(--color-dark-700);
+    border: 2px solid var(--color-dark-500);
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center;
+    padding-right: var(--space-10);
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-gold-500);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.form-group select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.form-group select option {
+    background: var(--color-dark-700);
+    color: var(--color-white);
+    padding: var(--space-2);
+}
+
+/* Form Row Responsivo - empilha em mobile */
+@media (max-width: 400px) {
+    .form-row {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .form-group-half {
+        width: 100%;
+    }
 }
 
 /* Submit Button */
@@ -1424,26 +1541,141 @@ body {
     color: var(--color-gray-300);
 }
 
+/* Tags de confirmação (página 5) */
+.confirmation-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.confirmation-tags .trust-badge {
+    font-size: var(--font-size-xs);
+}
+
 /* ============================================
-   MEDIA QUERIES - Responsividade
+   MEDIA QUERIES - Responsividade Mobile-First
    ============================================ */
 
-/* Mobile Small */
-@media (max-width: 375px) {
+/* Mobile - Otimizado para caber na tela sem scroll */
+@media (max-width: 480px) {
+    .funnel-page {
+        padding: 90px var(--space-4) var(--space-4);
+    }
+
+    .headline-group {
+        margin-bottom: var(--space-4);
+    }
+
     .headline-primary {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--space-2);
+    }
+
+    .headline-secondary {
+        font-size: var(--font-size-sm);
     }
 
     .trust-indicators {
-        flex-direction: column;
+        margin-bottom: var(--space-4);
+    }
+
+    .question-section {
+        margin-bottom: var(--space-4);
+    }
+
+    .question-highlight {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--space-4);
+    }
+
+    .cta-group {
+        gap: var(--space-2);
+    }
+
+    .cta-primary {
+        padding: var(--space-4) var(--space-5);
+    }
+
+    .cta-secondary {
+        padding: var(--space-3) var(--space-4);
     }
 
     .value-grid {
         gap: var(--space-2);
     }
 
+    .value-card {
+        padding: var(--space-3) var(--space-2);
+    }
+
     .value-amount {
+        font-size: var(--font-size-base);
+    }
+
+    .value-installment {
+        font-size: 10px;
+    }
+
+    .confirmation-content {
+        padding-top: var(--space-4);
+    }
+
+    .success-animation {
+        margin-bottom: var(--space-4);
+    }
+
+    .success-circle {
+        width: 70px;
+        height: 70px;
+    }
+
+    .confirmation-card {
+        padding: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+
+    .confirmation-value {
+        font-size: var(--font-size-2xl);
+        margin-bottom: var(--space-2);
+    }
+
+    .confirmation-tags {
+        gap: var(--space-2);
+        margin-bottom: var(--space-4);
+    }
+
+    .social-proof {
+        padding-top: var(--space-4);
+    }
+
+    .lead-form {
+        max-width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: var(--space-4);
+    }
+
+    .form-group input {
+        padding: var(--space-3) var(--space-4);
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 375px) {
+    .headline-primary {
         font-size: var(--font-size-lg);
+    }
+
+    .trust-badge {
+        font-size: 10px;
+        padding: var(--space-1) var(--space-3);
+    }
+
+    .value-amount {
+        font-size: var(--font-size-sm);
     }
 }
 

@@ -29,7 +29,8 @@
             valor_credito: '',
             nome: '',
             whatsapp: '',
-            cidade_estado: '',
+            estado: '',
+            cidade: '',
             utm_source: '',
             utm_medium: '',
             utm_campaign: '',
@@ -76,8 +77,8 @@
         // Setup form validation
         setupFormValidation();
 
-        // Populate city suggestions
-        populateCitySuggestions();
+        // Populate estados e cidades
+        populateEstados();
 
         // Track page view
         trackEvent('funnel_start', { page: 1 });
@@ -235,7 +236,8 @@
         // Get form values
         state.data.nome = document.getElementById('nome').value.trim();
         state.data.whatsapp = document.getElementById('whatsapp').value.trim();
-        state.data.cidade_estado = document.getElementById('cidade_estado').value.trim();
+        state.data.estado = document.getElementById('estado').value;
+        state.data.cidade = document.getElementById('cidade').value;
 
         saveData();
 
@@ -260,7 +262,8 @@
 
             trackEvent('lead_converted', {
                 valor_credito: state.data.valor_credito,
-                cidade: state.data.cidade_estado
+                estado: state.data.estado,
+                cidade: state.data.cidade
             });
 
             // Clear data after short delay
@@ -382,7 +385,8 @@
     function setupFormValidation() {
         const nomeInput = document.getElementById('nome');
         const whatsappInput = document.getElementById('whatsapp');
-        const cidadeInput = document.getElementById('cidade_estado');
+        const estadoSelect = document.getElementById('estado');
+        const cidadeSelect = document.getElementById('cidade');
 
         if (nomeInput) {
             nomeInput.addEventListener('input', () => validateField('nome'));
@@ -397,9 +401,12 @@
             whatsappInput.addEventListener('blur', () => validateField('whatsapp'));
         }
 
-        if (cidadeInput) {
-            cidadeInput.addEventListener('input', () => validateField('cidade_estado'));
-            cidadeInput.addEventListener('blur', () => validateField('cidade_estado'));
+        if (estadoSelect) {
+            estadoSelect.addEventListener('change', () => validateField('estado'));
+        }
+
+        if (cidadeSelect) {
+            cidadeSelect.addEventListener('change', () => validateField('cidade'));
         }
     }
 
@@ -438,13 +445,17 @@
                 }
                 break;
 
-            case 'cidade_estado':
+            case 'estado':
                 if (!value) {
                     isValid = false;
-                    errorMessage = 'Por favor, informe sua cidade';
-                } else if (value.length < 3) {
+                    errorMessage = 'Por favor, selecione o estado';
+                }
+                break;
+
+            case 'cidade':
+                if (!value) {
                     isValid = false;
-                    errorMessage = 'Cidade/Estado muito curto';
+                    errorMessage = 'Por favor, selecione a cidade';
                 }
                 break;
         }
@@ -460,7 +471,7 @@
     }
 
     function validateForm() {
-        const fields = ['nome', 'whatsapp', 'cidade_estado'];
+        const fields = ['nome', 'whatsapp', 'estado', 'cidade'];
         let isValid = true;
 
         fields.forEach(field => {
@@ -499,69 +510,86 @@
     }
 
     // ============================================
-    // City Suggestions
+    // Estados do Brasil
     // ============================================
-    function populateCitySuggestions() {
-        const datalist = document.getElementById('cidades');
-        if (!datalist) return;
+    const estados = [
+        { sigla: 'AC', nome: 'Acre' },
+        { sigla: 'AL', nome: 'Alagoas' },
+        { sigla: 'AP', nome: 'Amapá' },
+        { sigla: 'AM', nome: 'Amazonas' },
+        { sigla: 'BA', nome: 'Bahia' },
+        { sigla: 'CE', nome: 'Ceará' },
+        { sigla: 'DF', nome: 'Distrito Federal' },
+        { sigla: 'ES', nome: 'Espírito Santo' },
+        { sigla: 'GO', nome: 'Goiás' },
+        { sigla: 'MA', nome: 'Maranhão' },
+        { sigla: 'MT', nome: 'Mato Grosso' },
+        { sigla: 'MS', nome: 'Mato Grosso do Sul' },
+        { sigla: 'MG', nome: 'Minas Gerais' },
+        { sigla: 'PA', nome: 'Pará' },
+        { sigla: 'PB', nome: 'Paraíba' },
+        { sigla: 'PR', nome: 'Paraná' },
+        { sigla: 'PE', nome: 'Pernambuco' },
+        { sigla: 'PI', nome: 'Piauí' },
+        { sigla: 'RJ', nome: 'Rio de Janeiro' },
+        { sigla: 'RN', nome: 'Rio Grande do Norte' },
+        { sigla: 'RS', nome: 'Rio Grande do Sul' },
+        { sigla: 'RO', nome: 'Rondônia' },
+        { sigla: 'RR', nome: 'Roraima' },
+        { sigla: 'SC', nome: 'Santa Catarina' },
+        { sigla: 'SP', nome: 'São Paulo' },
+        { sigla: 'SE', nome: 'Sergipe' },
+        { sigla: 'TO', nome: 'Tocantins' }
+    ];
 
-        const cidades = [
-            'São Paulo - SP',
-            'Rio de Janeiro - RJ',
-            'Belo Horizonte - MG',
-            'Brasília - DF',
-            'Salvador - BA',
-            'Fortaleza - CE',
-            'Curitiba - PR',
-            'Recife - PE',
-            'Porto Alegre - RS',
-            'Manaus - AM',
-            'Goiânia - GO',
-            'Belém - PA',
-            'Guarulhos - SP',
-            'Campinas - SP',
-            'São Luís - MA',
-            'São Gonçalo - RJ',
-            'Maceió - AL',
-            'Duque de Caxias - RJ',
-            'Campo Grande - MS',
-            'Natal - RN',
-            'Teresina - PI',
-            'São Bernardo do Campo - SP',
-            'Nova Iguaçu - RJ',
-            'João Pessoa - PB',
-            'Santo André - SP',
-            'Osasco - SP',
-            'São José dos Campos - SP',
-            'Ribeirão Preto - SP',
-            'Jaboatão dos Guararapes - PE',
-            'Uberlândia - MG',
-            'Contagem - MG',
-            'Sorocaba - SP',
-            'Aracaju - SE',
-            'Feira de Santana - BA',
-            'Cuiabá - MT',
-            'Joinville - SC',
-            'Londrina - PR',
-            'Juiz de Fora - MG',
-            'Aparecida de Goiânia - GO',
-            'Niterói - RJ',
-            'Porto Velho - RO',
-            'Ananindeua - PA',
-            'Serra - ES',
-            'Florianópolis - SC',
-            'Caxias do Sul - RS',
-            'Vitória - ES',
-            'Campos dos Goytacazes - RJ',
-            'Belford Roxo - RJ',
-            'São João de Meriti - RJ',
-            'Mauá - SP'
-        ];
+    function populateEstados() {
+        const estadoSelect = document.getElementById('estado');
+        const cidadeSelect = document.getElementById('cidade');
 
-        cidades.forEach(cidade => {
+        if (!estadoSelect) return;
+
+        // Popular estados
+        estados.forEach(estado => {
             const option = document.createElement('option');
-            option.value = cidade;
-            datalist.appendChild(option);
+            option.value = estado.sigla;
+            option.textContent = `${estado.nome} (${estado.sigla})`;
+            estadoSelect.appendChild(option);
+        });
+
+        // Listener para quando estado mudar
+        estadoSelect.addEventListener('change', async function() {
+            const sigla = this.value;
+
+            // Limpar cidades e mostrar loading
+            cidadeSelect.innerHTML = '<option value="">Carregando...</option>';
+            cidadeSelect.disabled = true;
+
+            if (sigla) {
+                try {
+                    // Buscar cidades da API do IBGE
+                    const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios?orderBy=nome`);
+                    const cidades = await response.json();
+
+                    // Limpar e popular cidades
+                    cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+
+                    cidades.forEach(cidade => {
+                        const option = document.createElement('option');
+                        option.value = cidade.nome;
+                        option.textContent = cidade.nome;
+                        cidadeSelect.appendChild(option);
+                    });
+
+                    cidadeSelect.disabled = false;
+                    log(`${cidades.length} cidades carregadas para ${sigla}`);
+
+                } catch (error) {
+                    log('Erro ao carregar cidades:', error);
+                    cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
+                }
+            } else {
+                cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+            }
         });
     }
 
@@ -581,7 +609,9 @@
             valor_credito: state.data.valor_credito,
             nome: state.data.nome,
             whatsapp: state.data.whatsapp,
-            cidade_estado: state.data.cidade_estado,
+            estado: state.data.estado,
+            cidade: state.data.cidade,
+            cidade_estado: `${state.data.cidade} - ${state.data.estado}`,
             utm_source: state.data.utm_source || '',
             utm_medium: state.data.utm_medium || '',
             utm_campaign: state.data.utm_campaign || '',
@@ -626,10 +656,10 @@
             elements.valorConfirmacao.textContent = `R$ ${valor}`;
         }
 
-        // Update WhatsApp link
+        // Update WhatsApp link (mantido para compatibilidade futura)
         if (elements.whatsappLink) {
             const message = encodeURIComponent(
-                `${CONFIG.whatsappMessage}\n\nNome: ${state.data.nome}\nValor: R$ ${state.data.valor_credito}\nCidade: ${state.data.cidade_estado}`
+                `${CONFIG.whatsappMessage}\n\nNome: ${state.data.nome}\nValor: R$ ${state.data.valor_credito}\nCidade: ${state.data.cidade} - ${state.data.estado}`
             );
             elements.whatsappLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${message}`;
         }
