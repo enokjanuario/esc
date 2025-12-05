@@ -116,6 +116,12 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+}
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 body {
@@ -1560,17 +1566,42 @@ body {
 
 /* Mobile - Otimizado para caber na tela sem scroll */
 @media (max-width: 480px) {
+    .progress-header {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .progress-container {
+        gap: var(--space-2);
+    }
+
+    .progress-info {
+        font-size: var(--font-size-xs);
+    }
+
     .funnel-page {
-        padding: 90px var(--space-4) var(--space-4);
+        padding: 75px var(--space-4) var(--space-3);
+        align-items: flex-start;
+    }
+
+    .page-content {
+        width: 100%;
+    }
+
+    .logo-section {
+        margin-bottom: var(--space-2);
+    }
+
+    .logo-image-transparent {
+        max-width: 100px;
     }
 
     .headline-group {
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
     }
 
     .headline-primary {
         font-size: var(--font-size-xl);
-        margin-bottom: var(--space-2);
+        margin-bottom: var(--space-1);
     }
 
     .headline-secondary {
@@ -1578,24 +1609,33 @@ body {
     }
 
     .trust-indicators {
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
+    }
+
+    .trust-badge {
+        padding: var(--space-2) var(--space-3);
+        font-size: 11px;
     }
 
     .question-section {
-        margin-bottom: var(--space-4);
+        margin-bottom: 0;
     }
 
     .question-highlight {
         font-size: var(--font-size-base);
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
     }
 
     .cta-group {
         gap: var(--space-2);
     }
 
+    .cta-divider {
+        margin: var(--space-1) 0;
+    }
+
     .cta-primary {
-        padding: var(--space-4) var(--space-5);
+        padding: var(--space-3) var(--space-4);
     }
 
     .cta-secondary {
@@ -1618,36 +1658,55 @@ body {
         font-size: 10px;
     }
 
+    /* Página 5 - Confirmação otimizada */
     .confirmation-content {
-        padding-top: var(--space-4);
+        padding-top: var(--space-2);
     }
 
     .success-animation {
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
     }
 
     .success-circle {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
     }
 
     .confirmation-card {
-        padding: var(--space-4);
-        margin-bottom: var(--space-4);
+        padding: var(--space-3);
+        margin-bottom: var(--space-3);
+    }
+
+    .confirmation-label {
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--space-1);
     }
 
     .confirmation-value {
-        font-size: var(--font-size-2xl);
-        margin-bottom: var(--space-2);
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--space-1);
+    }
+
+    .confirmation-text {
+        font-size: var(--font-size-sm);
     }
 
     .confirmation-tags {
         gap: var(--space-2);
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
+    }
+
+    .confirmation-tags .trust-badge {
+        font-size: 10px;
+        padding: var(--space-1) var(--space-2);
     }
 
     .social-proof {
-        padding-top: var(--space-4);
+        padding-top: var(--space-3);
+    }
+
+    .social-proof p {
+        font-size: var(--font-size-sm);
     }
 
     .lead-form {
@@ -1655,7 +1714,7 @@ body {
     }
 
     .form-group {
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
     }
 
     .form-group input {
@@ -1665,17 +1724,76 @@ body {
 
 /* Mobile Small */
 @media (max-width: 375px) {
+    .progress-header {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .funnel-page {
+        padding: 70px var(--space-3) var(--space-2);
+    }
+
+    .logo-image-transparent {
+        max-width: 85px;
+    }
+
     .headline-primary {
         font-size: var(--font-size-lg);
     }
 
+    .headline-secondary {
+        font-size: var(--font-size-xs);
+    }
+
     .trust-badge {
         font-size: 10px;
-        padding: var(--space-1) var(--space-3);
+        padding: var(--space-1) var(--space-2);
+    }
+
+    .question-highlight {
+        font-size: var(--font-size-sm);
+        margin-bottom: var(--space-2);
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--font-size-sm);
+    }
+
+    .cta-icon {
+        width: 18px;
+        height: 18px;
     }
 
     .value-amount {
         font-size: var(--font-size-sm);
+    }
+
+    /* Página 5 - Confirmação extra compacta */
+    .success-circle {
+        width: 50px;
+        height: 50px;
+    }
+
+    .success-animation {
+        margin-bottom: var(--space-2);
+    }
+
+    .confirmation-card {
+        padding: var(--space-2);
+        margin-bottom: var(--space-2);
+    }
+
+    .confirmation-value {
+        font-size: var(--font-size-lg);
+    }
+
+    .confirmation-tags {
+        margin-bottom: var(--space-2);
+    }
+
+    .social-proof {
+        padding-top: var(--space-2);
     }
 }
 
