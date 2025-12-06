@@ -16,7 +16,7 @@
 
         // Outros
         storageKey: 'esc_lead_data',
-        debug: true
+        debug: false
     };
 
     // ============================================

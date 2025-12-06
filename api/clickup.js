@@ -92,7 +92,6 @@ module.exports = async (req, res) => {
 
         if (!response.ok) {
             const errorData = await response.json();
-            console.error('ClickUp Error:', errorData);
             return res.status(response.status).json({
                 error: 'Erro ao criar task no ClickUp',
                 details: errorData
@@ -108,7 +107,6 @@ module.exports = async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Server Error:', error);
         return res.status(500).json({
             error: 'Erro interno do servidor',
             message: error.message
