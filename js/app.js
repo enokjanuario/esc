@@ -10,13 +10,6 @@
     // Configuration
     // ============================================
     const CONFIG = {
-        // RD Station API - Preencha com seu token
-        rdStationApiKey: '622df1fd8e349e4d72411a750173a48b', // Token da API do RD Station (obtenha em: Configurações > Integrações > Token público)
-        rdStationConversionIdentifier: 'landing-page-esc-credito', // Identificador da conversão
-
-        // Webhook alternativo (Zapier, Make, etc.) - opcional
-        webhookUrl: '',
-
         // WhatsApp
         whatsappNumber: '5500000000000', // Número do WhatsApp com código do país
         whatsappMessage: 'Olá! Acabei de solicitar uma simulação de crédito no site.',
@@ -603,122 +596,50 @@
     }
 
     // ============================================
-    // RD Station & Webhook Integration
+    // ClickUp Integration (via Vercel API)
     // ============================================
     async function sendToWebhook() {
-        let rdSuccess = false;
-        let webhookSuccess = false;
-
-        // 1. Enviar para RD Station (se configurado)
-        if (CONFIG.rdStationApiKey) {
-            rdSuccess = await sendToRDStation();
-        } else {
-            log('RD Station API Key não configurada');
-        }
-
-        // 2. Enviar para Webhook alternativo (se configurado)
-        if (CONFIG.webhookUrl) {
-            webhookSuccess = await sendToCustomWebhook();
-        }
-
-        // Retorna true se pelo menos uma integração funcionou ou se nenhuma está configurada (modo demo)
-        if (!CONFIG.rdStationApiKey && !CONFIG.webhookUrl) {
-            log('Nenhuma integração configurada. Modo demo ativo. Data:', state.data);
-            return true;
-        }
-
-        return rdSuccess || webhookSuccess;
+        return await sendToClickUp();
     }
 
-    // Integração com RD Station Marketing via API de Integrações
-    async function sendToRDStation() {
-        // Preparar dados para envio
+    // Enviar para API serverless que faz proxy para o ClickUp
+    async function sendToClickUp() {
         const payload = {
-            token_rdstation: CONFIG.rdStationApiKey,
-            identificador: CONFIG.rdStationConversionIdentifier,
-            nome: state.data.nome,
-            telefone: state.data.whatsapp,
-            estado: state.data.estado,
-            cidade: state.data.cidade,
-            tem_cnpj: state.data.tem_cnpj,
-            tem_fachada: state.data.tem_fachada,
-            valor_credito: state.data.valor_credito,
-            cidade_estado: `${state.data.cidade} - ${state.data.estado}`,
-            traffic_source: state.data.utm_source || state.data.referrer || 'direct',
-            utm_source: state.data.utm_source || '',
-            utm_medium: state.data.utm_medium || '',
-            utm_campaign: state.data.utm_campaign || ''
-        };
-
-        log('Enviando para RD Station:', payload);
-
-        try {
-            // Usar a API de integração via URL com query params (método que funciona no frontend)
-            const formData = new URLSearchParams();
-            Object.entries(payload).forEach(([key, value]) => {
-                if (value) formData.append(key, value);
-            });
-
-            await fetch('https://www.rdstation.com.br/api/1.2/conversions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: formData.toString(),
-                mode: 'no-cors' // Necessário para evitar erro de CORS
-            });
-
-            // Com mode: 'no-cors', não conseguimos ler a resposta, mas o envio é feito
-            log('RD Station: requisição enviada (modo no-cors)');
-            return true;
-
-        } catch (error) {
-            log('Erro ao enviar para RD Station:', error);
-            return false;
-        }
-    }
-
-    // Webhook customizado (Zapier, Make, etc.)
-    async function sendToCustomWebhook() {
-        const payload = {
-            tem_cnpj: state.data.tem_cnpj,
-            tem_fachada: state.data.tem_fachada,
-            valor_credito: state.data.valor_credito,
             nome: state.data.nome,
             whatsapp: state.data.whatsapp,
             estado: state.data.estado,
             cidade: state.data.cidade,
-            cidade_estado: `${state.data.cidade} - ${state.data.estado}`,
+            tem_cnpj: state.data.tem_cnpj,
+            tem_fachada: state.data.tem_fachada,
+            valor_credito: state.data.valor_credito,
             utm_source: state.data.utm_source || '',
             utm_medium: state.data.utm_medium || '',
             utm_campaign: state.data.utm_campaign || '',
-            utm_term: state.data.utm_term || '',
-            utm_content: state.data.utm_content || '',
-            timestamp: state.data.timestamp,
-            referrer: state.data.referrer,
-            user_agent: state.data.user_agent
+            referrer: state.data.referrer || ''
         };
 
-        log('Enviando para webhook customizado:', payload);
+        log('Enviando para ClickUp via API:', payload);
 
         try {
-            const response = await fetch(CONFIG.webhookUrl, {
+            const response = await fetch('/api/clickup', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload)
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
-                throw new Error(`Webhook error: ${response.status}`);
+                throw new Error(result.error || 'Erro ao enviar dados');
             }
 
-            log('Webhook response:', response.status);
+            log('ClickUp task criada:', result);
             return true;
 
         } catch (error) {
-            log('Erro ao enviar para webhook:', error);
+            log('Erro ao enviar para ClickUp:', error);
             return false;
         }
     }
