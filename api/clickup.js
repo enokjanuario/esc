@@ -1,12 +1,11 @@
 // Vercel Serverless Function - ClickUp Integration
-// Este arquivo será executado no servidor, evitando problemas de CORS
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
     // Configurar CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     // Handle preflight request
     if (req.method === 'OPTIONS') {
@@ -38,7 +37,7 @@ export default async function handler(req, res) {
         });
 
         // Criar descrição detalhada da task
-        const descricao = `## 📋 Dados do Lead
+        const descricao = `## Dados do Lead
 
 **Nome:** ${data.nome}
 **WhatsApp:** ${data.whatsapp}
@@ -46,15 +45,15 @@ export default async function handler(req, res) {
 
 ---
 
-## 💰 Solicitação
+## Solicitação
 
 **Valor do Crédito:** ${valorFormatado}
-**Tem CNPJ:** ${data.tem_cnpj === 'sim' ? '✅ Sim' : '❌ Não'}
-**Tem Fachada:** ${data.tem_fachada === 'sim' ? '✅ Sim' : '❌ Não'}
+**Tem CNPJ:** ${data.tem_cnpj === 'sim' ? 'Sim' : 'Não'}
+**Tem Fachada:** ${data.tem_fachada === 'sim' ? 'Sim' : 'Não'}
 
 ---
 
-## 📊 Rastreamento
+## Rastreamento
 
 **Origem:** ${data.utm_source || data.referrer || 'Acesso direto'}
 **Mídia:** ${data.utm_medium || '-'}
@@ -65,7 +64,6 @@ export default async function handler(req, res) {
         const tags = [];
         if (data.tem_cnpj === 'sim') tags.push('tem-cnpj');
         if (data.tem_fachada === 'sim') tags.push('tem-fachada');
-        if (data.utm_source) tags.push(`utm-${data.utm_source}`);
 
         // Tag de valor
         const valor = parseInt(data.valor_credito || 0);
@@ -75,7 +73,7 @@ export default async function handler(req, res) {
 
         // Payload para o ClickUp
         const payload = {
-            name: `🎯 Lead: ${data.nome} - ${valorFormatado}`,
+            name: `Lead: ${data.nome} - ${valorFormatado}`,
             description: descricao,
             tags: tags,
             priority: 2,
@@ -116,4 +114,4 @@ export default async function handler(req, res) {
             message: error.message
         });
     }
-}
+};
