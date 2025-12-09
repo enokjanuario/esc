@@ -38,6 +38,7 @@ module.exports = async (req, res) => {
 
         // Criar descrição detalhada da task
         const descricao = `## Dados do Lead
+        
 
 **Nome:** ${data.nome}
 **WhatsApp:** ${data.whatsapp}
