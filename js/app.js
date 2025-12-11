@@ -697,6 +697,11 @@
                         value: params.valor_credito,
                         currency: 'BRL'
                     });
+                    fbq('track', 'Purchase', {
+                        content_name: 'ESC Credito',
+                        value: params.valor_credito,
+                        currency: 'BRL'
+                    });
                     break;
                 case 'page_view':
                     fbq('track', 'PageView');
