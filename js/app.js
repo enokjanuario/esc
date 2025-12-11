@@ -438,12 +438,36 @@
 
             case 'whatsapp':
                 const cleanPhone = value.replace(/\D/g, '');
+                const ddd = cleanPhone.slice(0, 2);
+                const numeroSemDDD = cleanPhone.slice(2);
+                const dddsValidos = ['11','12','13','14','15','16','17','18','19','21','22','24','27','28','31','32','33','34','35','37','38','41','42','43','44','45','46','47','48','49','51','53','54','55','61','62','63','64','65','66','67','68','69','71','73','74','75','77','79','81','82','83','84','85','86','87','88','89','91','92','93','94','95','96','97','98','99'];
+
+                // Verifica se todos os dígitos são iguais
+                const todosIguais = /^(\d)\1+$/.test(numeroSemDDD);
+
+                // Verifica sequências crescentes ou decrescentes
+                const sequenciaCrescente = '0123456789';
+                const sequenciaDecrescente = '9876543210';
+                const ehSequencia = sequenciaCrescente.includes(numeroSemDDD) || sequenciaDecrescente.includes(numeroSemDDD);
+
                 if (!value) {
                     isValid = false;
                     errorMessage = 'Por favor, informe seu WhatsApp';
-                } else if (cleanPhone.length < 10 || cleanPhone.length > 11) {
+                } else if (cleanPhone.length < 11) {
                     isValid = false;
-                    errorMessage = 'Número de WhatsApp inválido';
+                    errorMessage = 'Número incompleto - deve ter DDD + 9 dígitos';
+                } else if (cleanPhone.length > 11) {
+                    isValid = false;
+                    errorMessage = 'Número com dígitos a mais';
+                } else if (!dddsValidos.includes(ddd)) {
+                    isValid = false;
+                    errorMessage = `DDD (${ddd}) inválido - verifique o código de área`;
+                } else if (todosIguais) {
+                    isValid = false;
+                    errorMessage = 'Número inválido - dígitos não podem ser todos iguais';
+                } else if (ehSequencia) {
+                    isValid = false;
+                    errorMessage = 'Número inválido - não pode ser sequência';
                 }
                 break;
 
