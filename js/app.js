@@ -692,16 +692,8 @@
                     fbq('track', 'ViewContent', { content_name: 'Funnel Start' });
                     break;
                 case 'lead_converted':
-                    fbq('track', 'Lead', {
-                        content_name: 'ESC Lead',
-                        value: params.valor_credito,
-                        currency: 'BRL'
-                    });
-                    fbq('track', 'Purchase', {
-                        content_name: 'ESC Credito',
-                        value: params.valor_credito,
-                        currency: 'BRL'
-                    });
+                    fbq('track', 'Lead');
+                    fbq('track', 'Purchase');
                     break;
                 case 'page_view':
                     fbq('track', 'PageView');
