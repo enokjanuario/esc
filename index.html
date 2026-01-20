@@ -440,9 +440,9 @@
                         </p>
                     </div>
 
-                    <form id="leadForm" class="lead-form">
+                    <form id="leadForm" class="lead-form lead-form-compact">
                         <div class="form-group">
-                            <label for="nome">Nome completo</label>
+                            <label for="nome">Nome completo <span class="required">*</span></label>
                             <input
                                 type="text"
                                 id="nome"
@@ -454,22 +454,36 @@
                             <span class="error-message" id="nomeError"></span>
                         </div>
 
-                        <div class="form-group">
-                            <label for="whatsapp">WhatsApp</label>
-                            <input
-                                type="tel"
-                                id="whatsapp"
-                                name="whatsapp"
-                                placeholder="(00) 00000-0000"
-                                required
-                                autocomplete="tel"
-                            >
-                            <span class="error-message" id="whatsappError"></span>
+                        <div class="form-row">
+                            <div class="form-group form-group-half">
+                                <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+                                <input
+                                    type="tel"
+                                    id="whatsapp"
+                                    name="whatsapp"
+                                    placeholder="(00) 00000-0000"
+                                    required
+                                    autocomplete="tel"
+                                >
+                                <span class="error-message" id="whatsappError"></span>
+                            </div>
+
+                            <div class="form-group form-group-half">
+                                <label for="whatsappConfirm">Confirmar WhatsApp <span class="required">*</span></label>
+                                <input
+                                    type="tel"
+                                    id="whatsappConfirm"
+                                    name="whatsappConfirm"
+                                    placeholder="(00) 00000-0000"
+                                    required
+                                >
+                                <span class="error-message" id="whatsappConfirmError"></span>
+                            </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group form-group-half">
-                                <label for="estado">Estado</label>
+                                <label for="estado">Estado <span class="required">*</span></label>
                                 <select
                                     id="estado"
                                     name="estado"
@@ -481,7 +495,7 @@
                             </div>
 
                             <div class="form-group form-group-half">
-                                <label for="cidade">Cidade</label>
+                                <label for="cidade">Cidade <span class="required">*</span></label>
                                 <select
                                     id="cidade"
                                     name="cidade"
@@ -541,18 +555,18 @@
                     </div>
 
                     <div class="confirmation-card">
-                        <p class="confirmation-label">Solicitação de crédito no valor de</p>
+                        <p class="confirmation-label">Solicitação de <span class="text-orange">crédito</span> no valor de</p>
                         <p class="confirmation-value" id="valorConfirmacao">R$3.000,00</p>
-                        <p class="confirmation-text">Nosso operador vai personalizar a sua proposta e enviar no seu WhatsApp.</p>
+                        <p class="confirmation-text">Nosso <strong class="text-highlight">ESPECIALISTA</strong> vai enviar uma proposta <strong class="text-highlight">PERSONALIZADA</strong> no seu WhatsApp.</p>
                     </div>
 
                     <!-- Tags de benefícios -->
                     <div class="confirmation-tags">
-                        <div class="trust-badge">
+                        <div class="trust-badge trust-badge-large">
                             <svg class="trust-icon"><use href="#icon-zap"/></svg>
                             <span>Crédito em conta em até 24h</span>
                         </div>
-                        <div class="trust-badge">
+                        <div class="trust-badge trust-badge-large">
                             <svg class="trust-icon"><use href="#icon-shield-check"/></svg>
                             <span>Sem comprovação de renda</span>
                         </div>
@@ -565,6 +579,25 @@
 
                 </div>
             </div>
+
+            <!-- Footer -->
+            <footer class="page-footer">
+                <div class="footer-content">
+                    <div class="footer-company">
+                        <p class="footer-name">NOVA JAÚ ESC</p>
+                        <p class="footer-razao">Empresa Simples de Crédito LTDA</p>
+                    </div>
+                    <div class="footer-contact">
+                        <p class="footer-contact-title">CONTATO:</p>
+                        <p><a href="mailto:pixdejau@gmail.com">pixdejau@gmail.com</a></p>
+                        <p><a href="tel:+5514998654321">014 99865 4321</a></p>
+                    </div>
+                    <div class="footer-legal">
+                        <p>&copy; 2026 Araras Empresa Simples de Crédito LTDA. Todos os direitos reservados.</p>
+                        <p>Empresa autorizada pela <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp167.htm" target="_blank" rel="noopener">Lei Complementar 167/2019</a></p>
+                    </div>
+                </div>
+            </footer>
         </section>
 
     </main>

@@ -396,6 +396,7 @@
     function setupFormValidation() {
         const nomeInput = document.getElementById('nome');
         const whatsappInput = document.getElementById('whatsapp');
+        const whatsappConfirmInput = document.getElementById('whatsappConfirm');
         const estadoSelect = document.getElementById('estado');
         const cidadeSelect = document.getElementById('cidade');
 
@@ -408,8 +409,20 @@
             whatsappInput.addEventListener('input', (e) => {
                 applyPhoneMask(e.target);
                 validateField('whatsapp');
+                // Revalidar confirmação se já tiver valor
+                if (whatsappConfirmInput && whatsappConfirmInput.value) {
+                    validateField('whatsappConfirm');
+                }
             });
             whatsappInput.addEventListener('blur', () => validateField('whatsapp'));
+        }
+
+        if (whatsappConfirmInput) {
+            whatsappConfirmInput.addEventListener('input', (e) => {
+                applyPhoneMask(e.target);
+                validateField('whatsappConfirm');
+            });
+            whatsappConfirmInput.addEventListener('blur', () => validateField('whatsappConfirm'));
         }
 
         if (estadoSelect) {
@@ -480,6 +493,26 @@
                 }
                 break;
 
+            case 'whatsappConfirm':
+                const cleanPhoneConfirm = value.replace(/\D/g, '');
+                const whatsappOriginal = document.getElementById('whatsapp')?.value.trim() || '';
+                const cleanOriginal = whatsappOriginal.replace(/\D/g, '');
+
+                if (!value) {
+                    isValid = false;
+                    errorMessage = 'Por favor, confirme seu WhatsApp';
+                } else if (cleanPhoneConfirm.length < 11) {
+                    isValid = false;
+                    errorMessage = 'Número incompleto';
+                } else if (cleanPhoneConfirm.length > 11) {
+                    isValid = false;
+                    errorMessage = 'Número com dígitos a mais';
+                } else if (cleanOriginal.length >= 11 && cleanPhoneConfirm !== cleanOriginal) {
+                    isValid = false;
+                    errorMessage = 'Os números não coincidem';
+                }
+                break;
+
             case 'estado':
                 if (!value) {
                     isValid = false;
@@ -506,7 +539,7 @@
     }
 
     function validateForm() {
-        const fields = ['nome', 'whatsapp', 'estado', 'cidade'];
+        const fields = ['nome', 'whatsapp', 'whatsappConfirm', 'estado', 'cidade'];
         let isValid = true;
 
         fields.forEach(field => {
