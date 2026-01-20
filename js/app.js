@@ -599,65 +599,68 @@
             estadoSelect.appendChild(option);
         });
 
-        // Se só tem um estado disponível, seleciona automaticamente
-        if (hasClientConfig && CLIENT_CONFIG.estados.length === 1) {
-            estadoSelect.value = CLIENT_CONFIG.estados[0];
-            estadoSelect.dispatchEvent(new Event('change'));
-        }
-
-        // Listener para quando estado mudar
-        estadoSelect.addEventListener('change', async function() {
-            const sigla = this.value;
-
-            // Limpar cidades e mostrar loading
+        // Função para carregar cidades
+        async function carregarCidades(sigla) {
             cidadeSelect.innerHTML = '<option value="">Carregando...</option>';
             cidadeSelect.disabled = true;
 
-            if (sigla) {
-                // Verificar se o cliente tem cidades específicas configuradas
-                const cidadesConfiguradas = CLIENT_CONFIG?.cidades?.[sigla];
+            if (!sigla) {
+                cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+                return;
+            }
 
-                if (cidadesConfiguradas && cidadesConfiguradas.length > 0) {
-                    // Usar cidades da configuração do cliente
+            // Verificar se o cliente tem cidades específicas configuradas
+            const cidadesConfiguradas = CLIENT_CONFIG?.cidades?.[sigla];
+
+            if (cidadesConfiguradas && cidadesConfiguradas.length > 0) {
+                // Usar cidades da configuração do cliente
+                cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+
+                cidadesConfiguradas.sort().forEach(cidade => {
+                    const option = document.createElement('option');
+                    option.value = cidade;
+                    option.textContent = cidade;
+                    cidadeSelect.appendChild(option);
+                });
+
+                cidadeSelect.disabled = false;
+                log(`${cidadesConfiguradas.length} cidades carregadas da config para ${sigla}`);
+
+            } else {
+                // Buscar cidades da API do IBGE (fallback)
+                try {
+                    const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios?orderBy=nome`);
+                    const cidades = await response.json();
+
                     cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
 
-                    cidadesConfiguradas.sort().forEach(cidade => {
+                    cidades.forEach(cidade => {
                         const option = document.createElement('option');
-                        option.value = cidade;
-                        option.textContent = cidade;
+                        option.value = cidade.nome;
+                        option.textContent = cidade.nome;
                         cidadeSelect.appendChild(option);
                     });
 
                     cidadeSelect.disabled = false;
-                    log(`${cidadesConfiguradas.length} cidades carregadas da config para ${sigla}`);
+                    log(`${cidades.length} cidades carregadas da API IBGE para ${sigla}`);
 
-                } else {
-                    // Buscar cidades da API do IBGE (fallback)
-                    try {
-                        const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios?orderBy=nome`);
-                        const cidades = await response.json();
-
-                        cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
-
-                        cidades.forEach(cidade => {
-                            const option = document.createElement('option');
-                            option.value = cidade.nome;
-                            option.textContent = cidade.nome;
-                            cidadeSelect.appendChild(option);
-                        });
-
-                        cidadeSelect.disabled = false;
-                        log(`${cidades.length} cidades carregadas da API IBGE para ${sigla}`);
-
-                    } catch (error) {
-                        log('Erro ao carregar cidades:', error);
-                        cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
-                    }
+                } catch (error) {
+                    log('Erro ao carregar cidades:', error);
+                    cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
                 }
-            } else {
-                cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
             }
+        }
+
+        // Listener para quando estado mudar
+        estadoSelect.addEventListener('change', function() {
+            carregarCidades(this.value);
         });
+
+        // Se só tem um estado disponível, seleciona e carrega cidades automaticamente
+        if (hasClientConfig && CLIENT_CONFIG.estados.length === 1) {
+            estadoSelect.value = CLIENT_CONFIG.estados[0];
+            carregarCidades(CLIENT_CONFIG.estados[0]);
+        }
     }
 
     // ============================================
