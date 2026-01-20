@@ -1,3 +1,7 @@
 {
-  "version": 2
+  "version": 2,
+  "rewrites": [
+    { "source": "/multicidades", "destination": "/index.html" },
+    { "source": "/serra", "destination": "/index.html" }
+  ]
 }
