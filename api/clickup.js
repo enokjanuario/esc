@@ -1,4 +1,4 @@
-// Vercel Serverless Function - ClickUp Integration
+// Vercel Serverless Function - ClickUp Integration (Multi-tenant)
 
 module.exports = async (req, res) => {
     // Configurar CORS headers
@@ -20,7 +20,15 @@ module.exports = async (req, res) => {
 
     // Configurações do ClickUp
     const CLICKUP_API_TOKEN = 'pk_266413314_788FI3PPPVHO7AN8W8EO9DRE3FNL6Y7O';
-    const CLICKUP_LIST_ID = '901323227565';
+    const DEFAULT_LIST_ID = '901323227565';
+
+    // Lista de IDs de lista permitidos (segurança - evita uso indevido)
+    const ALLOWED_LIST_IDS = [
+        '901323227565',  // default (rota base)
+        '901324566139',  // multicidades
+        '901324566317',  // serra
+        // Adicione novos IDs aqui conforme necessário
+    ];
 
     try {
         const data = req.body;
@@ -29,6 +37,15 @@ module.exports = async (req, res) => {
         if (!data.nome || !data.whatsapp) {
             return res.status(400).json({ error: 'Nome e WhatsApp são obrigatórios' });
         }
+
+        // Determinar qual lista usar (multi-tenant)
+        let listId = DEFAULT_LIST_ID;
+        if (data.clickup_list_id && ALLOWED_LIST_IDS.includes(data.clickup_list_id)) {
+            listId = data.clickup_list_id;
+        }
+
+        // Log para debug (aparece nos logs do Vercel)
+        console.log(`[ClickUp] Cliente: ${data.cliente || 'default'}, Lista: ${listId}`);
 
         // Formatar valor do crédito
         const valorFormatado = parseInt(data.valor_credito || 0).toLocaleString('pt-BR', {
@@ -56,6 +73,7 @@ module.exports = async (req, res) => {
 
 ## Rastreamento
 
+**Cliente/Rota:** ${data.cliente || 'default'}
 **Origem:** ${data.utm_source || data.referrer || 'Acesso direto'}
 **Mídia:** ${data.utm_medium || '-'}
 **Campanha:** ${data.utm_campaign || '-'}
@@ -82,7 +100,7 @@ module.exports = async (req, res) => {
         };
 
         // Enviar para ClickUp
-        const response = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
+        const response = await fetch(`https://api.clickup.com/api/v2/list/${listId}/task`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -7,12 +7,20 @@
     'use strict';
 
     // ============================================
+    // Client Configuration (Multi-tenancy)
+    // ============================================
+    const CLIENT_CONFIG = window.ESC_CLIENTS ? window.ESC_CLIENTS.getClientConfig() : null;
+
+    // ============================================
     // Configuration
     // ============================================
     const CONFIG = {
         // WhatsApp
         whatsappNumber: '5500000000000', // Número do WhatsApp com código do país
         whatsappMessage: 'Olá! Acabei de solicitar uma simulação de crédito no site.',
+
+        // ClickUp (pode ser sobrescrito pelo CLIENT_CONFIG)
+        clickupListId: CLIENT_CONFIG?.clickup?.listId || '901323227565',
 
         // Outros
         storageKey: 'esc_lead_data',
@@ -574,13 +582,27 @@
 
         if (!estadoSelect) return;
 
-        // Popular estados
+        // Verificar se há configuração de cliente
+        const hasClientConfig = CLIENT_CONFIG && CLIENT_CONFIG.estados;
+
+        // Popular estados (filtrados se houver config de cliente)
         estados.forEach(estado => {
+            // Se há config de cliente, só mostra estados permitidos
+            if (hasClientConfig && !CLIENT_CONFIG.estados.includes(estado.sigla)) {
+                return;
+            }
+
             const option = document.createElement('option');
             option.value = estado.sigla;
             option.textContent = `${estado.nome} (${estado.sigla})`;
             estadoSelect.appendChild(option);
         });
+
+        // Se só tem um estado disponível, seleciona automaticamente
+        if (hasClientConfig && CLIENT_CONFIG.estados.length === 1) {
+            estadoSelect.value = CLIENT_CONFIG.estados[0];
+            estadoSelect.dispatchEvent(new Event('change'));
+        }
 
         // Listener para quando estado mudar
         estadoSelect.addEventListener('change', async function() {
@@ -591,27 +613,45 @@
             cidadeSelect.disabled = true;
 
             if (sigla) {
-                try {
-                    // Buscar cidades da API do IBGE
-                    const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios?orderBy=nome`);
-                    const cidades = await response.json();
+                // Verificar se o cliente tem cidades específicas configuradas
+                const cidadesConfiguradas = CLIENT_CONFIG?.cidades?.[sigla];
 
-                    // Limpar e popular cidades
+                if (cidadesConfiguradas && cidadesConfiguradas.length > 0) {
+                    // Usar cidades da configuração do cliente
                     cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
 
-                    cidades.forEach(cidade => {
+                    cidadesConfiguradas.sort().forEach(cidade => {
                         const option = document.createElement('option');
-                        option.value = cidade.nome;
-                        option.textContent = cidade.nome;
+                        option.value = cidade;
+                        option.textContent = cidade;
                         cidadeSelect.appendChild(option);
                     });
 
                     cidadeSelect.disabled = false;
-                    log(`${cidades.length} cidades carregadas para ${sigla}`);
+                    log(`${cidadesConfiguradas.length} cidades carregadas da config para ${sigla}`);
 
-                } catch (error) {
-                    log('Erro ao carregar cidades:', error);
-                    cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
+                } else {
+                    // Buscar cidades da API do IBGE (fallback)
+                    try {
+                        const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios?orderBy=nome`);
+                        const cidades = await response.json();
+
+                        cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+
+                        cidades.forEach(cidade => {
+                            const option = document.createElement('option');
+                            option.value = cidade.nome;
+                            option.textContent = cidade.nome;
+                            cidadeSelect.appendChild(option);
+                        });
+
+                        cidadeSelect.disabled = false;
+                        log(`${cidades.length} cidades carregadas da API IBGE para ${sigla}`);
+
+                    } catch (error) {
+                        log('Erro ao carregar cidades:', error);
+                        cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
+                    }
                 }
             } else {
                 cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
@@ -639,7 +679,10 @@
             utm_source: state.data.utm_source || '',
             utm_medium: state.data.utm_medium || '',
             utm_campaign: state.data.utm_campaign || '',
-            referrer: state.data.referrer || ''
+            referrer: state.data.referrer || '',
+            // Multi-tenancy: envia info do cliente
+            cliente: CLIENT_CONFIG?.slug || 'default',
+            clickup_list_id: CONFIG.clickupListId
         };
 
         log('Enviando para ClickUp via API:', payload);
