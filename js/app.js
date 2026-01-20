@@ -21,6 +21,7 @@
 
         // ClickUp (pode ser sobrescrito pelo CLIENT_CONFIG)
         clickupListId: CLIENT_CONFIG?.clickup?.listId || '901323227565',
+        clickupToken: CLIENT_CONFIG?.clickup?.token || null,
 
         // Outros
         storageKey: 'esc_lead_data',
@@ -682,7 +683,8 @@
             referrer: state.data.referrer || '',
             // Multi-tenancy: envia info do cliente
             cliente: CLIENT_CONFIG?.slug || 'default',
-            clickup_list_id: CONFIG.clickupListId
+            clickup_list_id: CONFIG.clickupListId,
+            clickup_token: CONFIG.clickupToken
         };
 
         log('Enviando para ClickUp via API:', payload);

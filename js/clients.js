@@ -24,7 +24,8 @@ const CLIENTS = {
     'multicidades': {
         nome: 'Multi Cidades SP',
         clickup: {
-            listId: '901324566139'
+            listId: '901324566139',
+            token: 'pk_272685960_AY8GZFXNMAMY5ADTJBAJTPB9L9Q03ZMP'
         },
         estados: ['SP'],
         cidades: {
@@ -49,7 +50,8 @@ const CLIENTS = {
     'serra': {
         nome: 'Serra ES',
         clickup: {
-            listId: '901324566317'
+            listId: '901324566317',
+            token: 'pk_272686426_PTD2L9GCSSD6YXJ0U65ULTE4LK7OGZ5I'
         },
         estados: ['ES'],
         cidades: {

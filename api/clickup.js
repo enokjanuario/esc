@@ -18,17 +18,9 @@ module.exports = async (req, res) => {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Configurações do ClickUp
-    const CLICKUP_API_TOKEN = 'pk_266413314_788FI3PPPVHO7AN8W8EO9DRE3FNL6Y7O';
+    // Configurações padrão do ClickUp (usadas quando cliente não tem config própria)
+    const DEFAULT_TOKEN = 'pk_266413314_788FI3PPPVHO7AN8W8EO9DRE3FNL6Y7O';
     const DEFAULT_LIST_ID = '901323227565';
-
-    // Lista de IDs de lista permitidos (segurança - evita uso indevido)
-    const ALLOWED_LIST_IDS = [
-        '901323227565',  // default (rota base)
-        '901324566139',  // multicidades
-        '901324566317',  // serra
-        // Adicione novos IDs aqui conforme necessário
-    ];
 
     try {
         const data = req.body;
@@ -38,11 +30,9 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Nome e WhatsApp são obrigatórios' });
         }
 
-        // Determinar qual lista usar (multi-tenant)
-        let listId = DEFAULT_LIST_ID;
-        if (data.clickup_list_id && ALLOWED_LIST_IDS.includes(data.clickup_list_id)) {
-            listId = data.clickup_list_id;
-        }
+        // Determinar qual lista e token usar (multi-tenant)
+        const listId = data.clickup_list_id || DEFAULT_LIST_ID;
+        const token = data.clickup_token || DEFAULT_TOKEN;
 
         // Log para debug (aparece nos logs do Vercel)
         console.log(`[ClickUp] Cliente: ${data.cliente || 'default'}, Lista: ${listId}`);
@@ -104,7 +94,7 @@ module.exports = async (req, res) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': CLICKUP_API_TOKEN
+                'Authorization': token
             },
             body: JSON.stringify(payload)
         });
