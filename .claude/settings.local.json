@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npx vercel dev)",
-      "Bash(npx vercel dev:*)"
+      "Bash(npx vercel dev:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: migrate to Hostinger with PHP API and redirects\n\n- Add PHP version of ClickUp API for Hostinger compatibility\n- Add .htaccess for SPA routing on Apache\n- Fix page 5 footer layout (moved inside confirmation-content)\n- Add favicon using company logo\n- Configure Vercel redirect to empresadecredito.com.br\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
