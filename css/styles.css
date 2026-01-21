@@ -1679,15 +1679,37 @@ body {
 }
 
 /* ============================================
+   PAGE 5 LAYOUT
+   ============================================ */
+#page5 {
+    align-items: stretch;
+    overflow-y: auto;
+}
+
+#page5 .page-content {
+    max-width: 100%;
+    width: 100%;
+}
+
+#page5 .confirmation-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 var(--space-4);
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 .page-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: var(--space-8);
     padding: var(--space-6) var(--space-4);
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: var(--color-dark-800);
+    border-top: 1px solid var(--color-dark-600);
 }
 
 .footer-content {
@@ -1853,17 +1875,13 @@ body {
     }
 
     /* Página 5 - ajustes específicos */
-    #page5 {
-        overflow-y: auto;
-    }
-
-    #page5 .hero-content {
-        padding-top: 2rem;
-    }
-
     #page5 .confirmation-content {
-        padding-top: var(--space-4);
-        padding-bottom: 260px; /* Espaço para o footer */
+        padding-top: var(--space-2);
+    }
+
+    .page-footer {
+        margin-top: var(--space-6);
+        padding: var(--space-4) var(--space-3);
     }
 
     #page5 .success-animation {
@@ -1899,10 +1917,6 @@ body {
 
     #page5 .social-proof {
         margin-bottom: var(--space-4);
-    }
-
-    .page-footer {
-        padding: var(--space-4) var(--space-3);
     }
 
     .footer-name {

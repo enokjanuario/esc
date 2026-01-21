@@ -1,7 +1,9 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/multicidades", "destination": "/index.html" },
-    { "source": "/serra", "destination": "/index.html" }
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://empresadecredito.com.br/$1",
+      "permanent": true
+    }
   ]
 }

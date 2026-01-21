@@ -15,6 +15,9 @@
     // Configuration
     // ============================================
     const CONFIG = {
+        // API Endpoint - mudar para '/api/clickup' se usar Vercel
+        apiEndpoint: '/api/clickup.php',
+
         // WhatsApp
         whatsappNumber: '5500000000000', // Número do WhatsApp com código do país
         whatsappMessage: 'Olá! Acabei de solicitar uma simulação de crédito no site.',
@@ -726,7 +729,7 @@
         log('Enviando para ClickUp via API:', payload);
 
         try {
-            const response = await fetch('/api/clickup', {
+            const response = await fetch(CONFIG.apiEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
