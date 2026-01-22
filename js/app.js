@@ -94,10 +94,59 @@
         // Populate estados e cidades
         populateEstados();
 
+        // Update footer based on client config
+        updateFooter();
+
         // Track page view
         trackEvent('funnel_start', { page: 1 });
 
         log('Funnel initialized successfully');
+    }
+
+    // ============================================
+    // Dynamic Footer
+    // ============================================
+    function updateFooter() {
+        if (!CLIENT_CONFIG || !CLIENT_CONFIG.footer) return;
+
+        const footer = CLIENT_CONFIG.footer;
+
+        // Update company name
+        const footerName = document.querySelector('.footer-name');
+        if (footerName && footer.empresa) {
+            const empresaParts = footer.empresa.split(' - ');
+            footerName.textContent = empresaParts[0];
+        }
+
+        // Update razão social
+        const footerRazao = document.querySelector('.footer-razao');
+        if (footerRazao && footer.empresa) {
+            const empresaParts = footer.empresa.split(' - ');
+            footerRazao.textContent = empresaParts[1] || 'Empresa Simples de Crédito LTDA';
+        }
+
+        // Update email
+        const footerEmail = document.querySelector('.footer-contact a[href^="mailto:"]');
+        if (footerEmail && footer.email) {
+            footerEmail.href = `mailto:${footer.email}`;
+            footerEmail.textContent = footer.email;
+        }
+
+        // Update phone
+        const footerPhone = document.querySelector('.footer-contact a[href^="tel:"]');
+        if (footerPhone && footer.telefone) {
+            const phoneClean = footer.telefone.replace(/\D/g, '');
+            footerPhone.href = `tel:+55${phoneClean}`;
+            footerPhone.textContent = footer.telefone;
+        }
+
+        // Update copyright
+        const footerLegal = document.querySelector('.footer-legal p:first-child');
+        if (footerLegal && footer.copyright) {
+            footerLegal.textContent = footer.copyright;
+        }
+
+        log('Footer updated for client:', CLIENT_CONFIG.nome);
     }
 
     // ============================================

@@ -38,6 +38,13 @@ const CLIENTS = {
                 'Sumaré'
             ]
         },
+        footer: {
+            empresa: 'ARARAS ESC - Empresa Simples de Crédito LTDA',
+            cnpj: '00.000.000/0001-00',
+            email: 'contato@ararasesc.com.br',
+            telefone: '(19) 00000-0000',
+            copyright: '© 2026 Araras Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
+        }
         // Opcional: pixel e gtm específicos
         // pixel: '1910741219561489',
         // gtm: 'GTM-XXXXXX'
@@ -61,6 +68,73 @@ const CLIENTS = {
                 'Vila Velha',
                 'Vitória'
             ]
+        },
+        footer: {
+            empresa: 'SERRA ESC - Empresa Simples de Crédito LTDA',
+            cnpj: '00.000.000/0001-00',
+            email: 'contato@serraesc.com.br',
+            telefone: '(27) 00000-0000',
+            copyright: '© 2026 Serra Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
+        }
+    },
+
+    // ============================================
+    // Cliente: ABESC - Nova Jaú (SP, GO, MS)
+    // Rota: /abesc
+    // ============================================
+    'abesc': {
+        nome: 'Nova Jaú ESC',
+        clickup: {
+            listId: '901323227565',
+            token: 'pk_266413314_788FI3PPPVHO7AN8W8EO9DRE3FNL6Y7O'
+        },
+        estados: ['SP', 'GO', 'MS'],
+        cidades: {
+            'SP': [
+                'Araras',
+                'Águaí',
+                'Barra Bonita',
+                'Bariri',
+                'Conchal',
+                'Espírito Santo do Pinhal',
+                'Estiva Gerbi',
+                'Itapira',
+                'Itapuí',
+                'Jaú',
+                'Leme',
+                'Macatuba',
+                'Mogi Guaçu',
+                'Mogi Mirim',
+                'Pederneiras',
+                'Pirassununga'
+            ],
+            'GO': [
+                'Aparecida de Goiânia',
+                'Bela Vista de Goiás',
+                'Goiânia',
+                'Goianira',
+                'Hidrolândia',
+                'Senador Canedo',
+                'Trindade'
+            ],
+            'MS': [
+                'Bandeirantes',
+                'Campo Grande',
+                'Corguinho',
+                'Jaraguari',
+                'Nova Alvorada do Sul',
+                'Ribas do Rio Pardo',
+                'Rochedo',
+                'Sidrolândia',
+                'Terenos'
+            ]
+        },
+        footer: {
+            empresa: 'NOVA JAÚ ESC - Empresa Simples de Crédito LTDA',
+            cnpj: '62.277.478/0001-10',
+            email: 'pixdejau@gmail.com',
+            telefone: '(14) 99865-4321',
+            copyright: '© 2026 Nova Jaú Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
         }
     },
 
@@ -97,7 +171,14 @@ const DEFAULT_CONFIG = {
     },
     // null = usar todos os estados/cidades da API do IBGE
     estados: null,
-    cidades: null
+    cidades: null,
+    footer: {
+        empresa: 'NOVA JAÚ ESC - Empresa Simples de Crédito LTDA',
+        cnpj: '62.277.478/0001-10',
+        email: 'pixdejau@gmail.com',
+        telefone: '(14) 99865-4321',
+        copyright: '© 2026 Nova Jaú Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
+    }
 };
 
 // ============================================
