@@ -4,7 +4,10 @@
       "Bash(npx vercel dev)",
       "Bash(npx vercel dev:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: migrate to Hostinger with PHP API and redirects\n\n- Add PHP version of ClickUp API for Hostinger compatibility\n- Add .htaccess for SPA routing on Apache\n- Fix page 5 footer layout (moved inside confirmation-content)\n- Add favicon using company logo\n- Configure Vercel redirect to empresadecredito.com.br\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: add abesc tenant and dynamic footer\n\n- Add new tenant /abesc (Nova Jaú ESC) with SP, GO, MS cities\n- Add dynamic footer system based on tenant config\n- Add footer configs for all tenants\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: add www to non-www redirect and force HTTPS\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
