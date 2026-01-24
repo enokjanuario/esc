@@ -195,11 +195,9 @@ const CLIENTS = {
             ]
         },
         footer: {
-            empresa: 'FAST MONEY - Simples de Crédito LTDA',
-            cnpj: '00.000.000/0001-00',
-            email: 'emprestimosfastmoney@gmail.com',
-            telefone: '(00) 00000-0000',
-            copyright: '© 2026 Fast Money Simples de Crédito LTDA. Todos os direitos reservados.'
+            empresa: 'FAST MONEY - Empresa Simples de Crédito LTDA',
+            hideContact: true,
+            copyright: '© 2026 Fast Money Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
         }
     },
 

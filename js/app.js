@@ -125,19 +125,25 @@
             footerRazao.textContent = empresaParts[1] || 'Empresa Simples de Crédito LTDA';
         }
 
-        // Update email
-        const footerEmail = document.querySelector('.footer-contact a[href^="mailto:"]');
-        if (footerEmail && footer.email) {
-            footerEmail.href = `mailto:${footer.email}`;
-            footerEmail.textContent = footer.email;
-        }
+        // Handle contact section
+        const footerContact = document.querySelector('.footer-contact');
+        if (footerContact && footer.hideContact) {
+            footerContact.style.display = 'none';
+        } else if (footerContact) {
+            // Update email
+            const footerEmail = footerContact.querySelector('a[href^="mailto:"]');
+            if (footerEmail && footer.email) {
+                footerEmail.href = `mailto:${footer.email}`;
+                footerEmail.textContent = footer.email;
+            }
 
-        // Update phone
-        const footerPhone = document.querySelector('.footer-contact a[href^="tel:"]');
-        if (footerPhone && footer.telefone) {
-            const phoneClean = footer.telefone.replace(/\D/g, '');
-            footerPhone.href = `tel:+55${phoneClean}`;
-            footerPhone.textContent = footer.telefone;
+            // Update phone
+            const footerPhone = footerContact.querySelector('a[href^="tel:"]');
+            if (footerPhone && footer.telefone) {
+                const phoneClean = footer.telefone.replace(/\D/g, '');
+                footerPhone.href = `tel:+55${phoneClean}`;
+                footerPhone.textContent = footer.telefone;
+            }
         }
 
         // Update copyright
