@@ -7,7 +7,8 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: add abesc tenant and dynamic footer\n\n- Add new tenant /abesc (Nova Jaú ESC) with SP, GO, MS cities\n- Add dynamic footer system based on tenant config\n- Add footer configs for all tenants\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nfix: add www to non-www redirect and force HTTPS\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: add www to non-www redirect and force HTTPS\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

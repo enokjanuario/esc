@@ -139,6 +139,71 @@ const CLIENTS = {
     },
 
     // ============================================
+    // Cliente: Fast Money (SP, MG, PR)
+    // Rota: /fast
+    // ============================================
+    'fast': {
+        nome: 'Fast Money ESC',
+        clickup: {
+            listId: '901323280543',
+            token: 'pk_266436457_M9444FL2XTIR2RNATHFMHXHSERGDV4N2'
+        },
+        estados: ['SP', 'MG', 'PR'],
+        cidades: {
+            'SP': [
+                'Americana',
+                'Araçatuba',
+                'Araras',
+                'Araraquara',
+                'Barretos',
+                'Bauru',
+                'Birigui',
+                'Botucatu',
+                'Campinas',
+                'Canitar',
+                'Caraguatatuba',
+                'Catanduva',
+                'Chavantes',
+                'Itapetininga',
+                'Itu',
+                'Leme',
+                'Limeira',
+                'Matão',
+                'Ourinhos',
+                'Piratininga',
+                'Presidente Prudente',
+                'Ribeirão do Sul',
+                'Rio Claro',
+                'Salto Grande',
+                'Santa Cruz do Rio Pardo',
+                'São Carlos',
+                'São Manuel',
+                'São Sebastião',
+                'Sorocaba',
+                'Tatuí',
+                'Ubatuba',
+                'Votorantim'
+            ],
+            'MG': [
+                'Divinópolis',
+                'Uberaba'
+            ],
+            'PR': [
+                'Arapongas',
+                'Cambé',
+                'Londrina'
+            ]
+        },
+        footer: {
+            empresa: 'FAST MONEY - Simples de Crédito LTDA',
+            cnpj: '00.000.000/0001-00',
+            email: 'emprestimosfastmoney@gmail.com',
+            telefone: '(00) 00000-0000',
+            copyright: '© 2026 Fast Money Simples de Crédito LTDA. Todos os direitos reservados.'
+        }
+    },
+
+    // ============================================
     // TEMPLATE PARA NOVOS CLIENTES
     // Copie e cole abaixo, substituindo os valores
     // ============================================
