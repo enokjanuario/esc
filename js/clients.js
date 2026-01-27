@@ -230,7 +230,6 @@ const CLIENTS = {
 // ============================================
 const DEFAULT_CONFIG = {
     nome: 'ESC Crédito',
-    pixel: '1910741219561489',
     clickup: {
         listId: '901323227565'
     },
