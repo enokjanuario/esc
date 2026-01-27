@@ -84,6 +84,7 @@ const CLIENTS = {
     // ============================================
     'abesc': {
         nome: 'Nova Jaú ESC',
+        pixel: '1910741219561489',
         clickup: {
             listId: '901323227565',
             token: 'pk_266413314_788FI3PPPVHO7AN8W8EO9DRE3FNL6Y7O'
@@ -306,6 +307,22 @@ function getCidadesDisponiveis(sigla, config) {
     if (!config.cidades) return null; // null = usar API do IBGE
     return config.cidades[sigla] || [];
 }
+
+// ============================================
+// Inicialização do Meta Pixel por Tenant
+// ============================================
+function initPixel() {
+    const config = getClientConfig();
+
+    if (config.pixel && typeof fbq !== 'undefined') {
+        fbq('init', config.pixel);
+        fbq('track', 'PageView');
+        console.log(`[ESC] Meta Pixel inicializado: ${config.pixel}`);
+    }
+}
+
+// Inicializa o pixel assim que o script carrega
+initPixel();
 
 // Exporta para uso global
 window.ESC_CLIENTS = {
