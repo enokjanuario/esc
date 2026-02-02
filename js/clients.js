@@ -128,11 +128,9 @@ const CLIENTS = {
             ]
         },
         footer: {
-            empresa: 'NOVA JAÚ ESC - Empresa Simples de Crédito LTDA',
-            cnpj: '62.277.478/0001-10',
-            email: 'pixdejau@gmail.com',
-            telefone: '(14) 99865-4321',
-            copyright: '© 2026 Nova Jaú Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
+            empresa: 'ABESC - Empresa Simples de Crédito',
+            hideContact: true,
+            copyright: '© 2026 Abesc Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
         }
     },
 
