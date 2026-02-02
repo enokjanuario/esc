@@ -32,6 +32,7 @@ const CLIENTS = {
             'SP': [
                 'Americana',
                 'Indaiatuba',
+                'Itu',
                 'Nova Odessa',
                 'Salto',
                 'Santa Bárbara d\'Oeste',
@@ -111,11 +112,7 @@ const CLIENTS = {
             ],
             'GO': [
                 'Aparecida de Goiânia',
-                'Bela Vista de Goiás',
                 'Goiânia',
-                'Goianira',
-                'Hidrolândia',
-                'Senador Canedo',
                 'Trindade'
             ],
             'MS': [
@@ -199,6 +196,49 @@ const CLIENTS = {
             empresa: 'FAST MONEY - Empresa Simples de Crédito LTDA',
             hideContact: true,
             copyright: '© 2026 Fast Money Empresa Simples de Crédito LTDA. Todos os direitos reservados.'
+        }
+    },
+
+    // ============================================
+    // Cliente: LBR (SP, PR, SC)
+    // Rota: /lbr
+    // ============================================
+    'lbr': {
+        nome: 'LBR ESC',
+        clickup: {
+            listId: '901325046152',
+            token: 'pk_278482325_K70UC91GM2Z75TCSO3ZKCIQ73NR70RTN'
+        },
+        estados: ['SP', 'PR', 'SC'],
+        cidades: {
+            'SP': [
+                'Itanhaém',
+                'Mongaguá',
+                'Praia Grande',
+                'Santos',
+                'São Vicente'
+            ],
+            'PR': [
+                'Curitiba',
+                'Pinhais',
+                'Piraquara',
+                'São José dos Pinhais'
+            ],
+            'SC': [
+                'Balneário Camboriú',
+                'Bombinhas',
+                'Camboriú',
+                'Itajaí',
+                'Itapema',
+                'Navegantes',
+                'Porto Belo',
+                'Tijucas'
+            ]
+        },
+        footer: {
+            empresa: 'LBR ESC - Empresa Simples de Crédito',
+            hideContact: true,
+            copyright: '© 2026 Lbr Money Simples de Crédito LTDA. Todos os direitos reservados.'
         }
     },
 
