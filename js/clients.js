@@ -241,6 +241,54 @@ const CLIENTS = {
     },
 
     // ============================================
+    // Cliente: Multicity - EG Money (SP, PR)
+    // Rota: /multicity
+    // ============================================
+    'multicity': {
+        nome: 'EG Money ESC',
+        clickup: {
+            listId: '901325046723',
+            token: 'pk_278564902_B47NTPNDEMTPINVCVG2WXMX6JVTSJXV7'
+        },
+        estados: ['SP', 'PR'],
+        cidades: {
+            'SP': [
+                'Batatais',
+                'Campinas',
+                'Cravinhos',
+                'Elias Fausto',
+                'Hortolândia',
+                'Indaiatuba',
+                'Itú',
+                'Itupeva',
+                'Jaboticabal',
+                'Jardinópolis',
+                'Monte Mor',
+                'Nova Odessa',
+                'Ribeirão Preto',
+                'Salto',
+                'Santa Bárbara d\'Oeste',
+                'Serrana',
+                'Sertãozinho',
+                'Sumaré'
+            ],
+            'PR': [
+                'Cascavel',
+                'Corbélia',
+                'Marechal Cândido Rondon',
+                'Quedas do Iguaçu',
+                'Santa Tereza do Oeste',
+                'Toledo'
+            ]
+        },
+        footer: {
+            empresa: 'EG MONEY ESC - Empresa Simples de Crédito',
+            hideContact: true,
+            copyright: '© 2026 Eg Money Simples de Crédito LTDA. Todos os direitos reservados.'
+        }
+    },
+
+    // ============================================
     // TEMPLATE PARA NOVOS CLIENTES
     // Copie e cole abaixo, substituindo os valores
     // ============================================
