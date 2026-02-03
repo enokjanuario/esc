@@ -113,7 +113,6 @@ const CLIENTS = {
             'GO': [
                 'Aparecida de Goiânia',
                 'Goiânia',
-                'Trindade'
             ],
             'MS': [
                 'Bandeirantes',
