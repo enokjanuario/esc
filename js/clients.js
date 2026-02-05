@@ -33,7 +33,9 @@ const CLIENTS = {
                 'Americana',
                 'Indaiatuba',
                 'Itu',
+                'Limeira',
                 'Nova Odessa',
+                'Piracicaba',
                 'Salto',
                 'Santa Bárbara d\'Oeste',
                 'Sumaré'
